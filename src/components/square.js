@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Root = styled.div`
@@ -8,10 +8,27 @@ const Root = styled.div`
   background: white;
 `
 
-const Square = () => {
-  return(
-    <Root></Root>
-  )
+class Square extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this);
+    
+    this.state = {
+      value: ''
+    }
+  }
+
+  handleClick = () => {
+    this.setState({value: 'X'})
+  }
+
+  render() {
+    return (
+      <Root onClick={this.handleClick}>
+        { this.state.value }
+      </Root>
+    )
+  }
 }
 
 export default Square;
