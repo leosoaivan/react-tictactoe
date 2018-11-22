@@ -13,22 +13,22 @@ class App extends Component {
     this.state = {
       playerOne: {},
       playerTwo: {},
+      gameBoardValue: Array(9).fill(''),
     }
   }
 
   componentDidMount() {
-    let playerOne = this.playerFactory(1, 'X', 'X');
-    let playerTwo = this.playerFactory(2, 'O', 'O');
+    let playerOne = this.playerFactory(1, 'X');
+    let playerTwo = this.playerFactory(2, 'O');
     this.setState({playerOne: playerOne, playerTwo: playerTwo})
   }
 
-  playerFactory = (int, symbol, imgsrc) => {
-    let playerName = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
+  playerFactory = (int, symbol) => {
+    // let playerName = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
     
     return {
       symbol,
-      playerName,
-      imgsrc,
+      // playerName,
     };
   };
 

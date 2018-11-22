@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Square from './square';
 
-const GameWrapper = styled.div`
+const SquareList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
@@ -15,18 +15,16 @@ const GameWrapper = styled.div`
 `;
 
 const Grid = () => {
+  const squares = [...Array(9).keys()].map((index) => {
+    return(
+      <Square boardIndex={index} />
+    )
+  })
+
   return(
-    <GameWrapper>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-    </GameWrapper>
+    <SquareList>
+      {squares}
+    </SquareList>
   )
 }
 

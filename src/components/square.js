@@ -20,6 +20,7 @@ class Square extends Component {
 
   handleClick = () => {
     this.setState({value: 'X'})
+    console.log(this.props.boardIndex)
   }
 
   render() {
