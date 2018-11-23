@@ -17,13 +17,14 @@ class Square extends Component {
       value: ''
     }
   }
-
+  
   handleClick = () => {
     let currentPlayer = this.props.currentPlayer();
 
     if (this.state.value === '') {
       this.setState({value: currentPlayer.symbol})
-      this.props.playRound(1);
+      this.props.playRound();
+      this.props.storePlayerMove(parseInt(this.props.boardIndex), currentPlayer.symbol)
     }
   }
 

@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       playerOne: {},
       playerTwo: {},
-      gameBoardValue: Array(9).fill(''),
+      gameBoard: Array(9).fill(''),
       moveCounter: 1,
     }
   }
@@ -34,12 +34,19 @@ class App extends Component {
     };
   };
   
-  playRound = (num) => {
-    this.setState({moveCounter: this.state.moveCounter + num })
+  playRound = () => {
+    this.setState({moveCounter: this.state.moveCounter + 1 })
   }
 
   currentPlayer = () => {
     return (this.state.moveCounter % 2 === 0 ? this.state.playerTwo : this.state.playerOne)
+  }
+
+  storePlayerMove = (index, value) => {
+    let newGameBoard = this.state.gameBoard
+    newGameBoard[index] = value
+
+    this.setState({gameBoard: newGameBoard})
   }
 
   render() {
@@ -47,7 +54,8 @@ class App extends Component {
       <Root>
         <Grid 
           currentPlayer={this.currentPlayer}
-          playRound={this.playRound} />
+          playRound={this.playRound}
+          storePlayerMove={this.storePlayerMove} />
       </Root>
     )
   }

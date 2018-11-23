@@ -14,16 +14,15 @@ const SquareList = styled.div`
 }
 `;
 
-const Grid = ({currentPlayer, playRound}) => {
+const Grid = ({currentPlayer, playRound, storePlayerMove}) => {
   const squares = [...Array(9).keys()].map((index) => {
-    let key = 'square-' + index
-
     return(
       <Square
-        key={key}
+        key={index}
         boardIndex={index}
         currentPlayer={currentPlayer}
-        playRound={playRound} />
+        playRound={playRound}
+        storePlayerMove={storePlayerMove} />
     )
   })
 
