@@ -26,13 +26,6 @@ class Grid extends Component {
     }
   }
 
-  componentDidMount() {
-    let playerOne = this.playerFactory(1, 'X');
-    let playerTwo = this.playerFactory(2, 'O');
-    
-    this.setState({playerOne: playerOne, playerTwo: playerTwo})
-  }
-
   playerFactory = (int, symbol) => {
     // let playerName = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
     
@@ -42,12 +35,23 @@ class Grid extends Component {
     };
   };
   
-  playRound = () => {
-    this.setState({moveCounter: this.state.moveCounter + 1 })
+  componentDidMount() {
+    let playerOne = this.playerFactory(1, 'X');
+    let playerTwo = this.playerFactory(2, 'O');
+    
+    this.setState({playerOne: playerOne, playerTwo: playerTwo})
   }
 
   currentPlayer = () => {
     return (this.state.moveCounter % 2 === 0 ? this.state.playerTwo : this.state.playerOne)
+  }
+
+  onPlayerClick = (boardIndex) => {
+    let currentPlayer = this.currentPlayer();
+    let playerSymbol = currentPlayer.symbol;
+
+    this.storePlayerMove(parseInt(boardIndex), playerSymbol)
+    this.advanceTurn();
   }
 
   storePlayerMove = (index, value) => {
@@ -56,6 +60,10 @@ class Grid extends Component {
 
     this.setState({gameBoard: newGameBoard})
   }
+  
+  advanceTurn = () => {
+    this.setState({moveCounter: this.state.moveCounter + 1 })
+  }
 
   render() {
     const squares = [...Array(9).keys()].map((index) => {
@@ -63,9 +71,8 @@ class Grid extends Component {
         <Square
           key={index}
           boardIndex={index}
-          currentPlayer={this.currentPlayer}
-          playRound={this.playRound}
-          storePlayerMove={this.storePlayerMove} />
+          onPlayerClick={this.onPlayerClick}
+          currentPlayer={this.currentPlayer} />
       )
     })
 

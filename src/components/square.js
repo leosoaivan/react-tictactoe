@@ -11,28 +11,26 @@ const Root = styled.div`
 class Square extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this);
-    
+
     this.state = {
-      value: ''
+      value: '',
     }
   }
-  
-  handleClick = () => {
-    let currentPlayer = this.props.currentPlayer();
-    let playerSymbol = currentPlayer.symbol;
+
+  handleClick = (index) => {
+    let currentPlayer = this.props.currentPlayer
+    let playerSymbol = currentPlayer.symbol
 
     if (this.state.value === '') {
       this.setState({value: playerSymbol})
-      this.props.storePlayerMove(parseInt(this.props.boardIndex), playerSymbol)
-      this.props.playRound();
+      this.props.onPlayerClick(index)
     }
   }
 
   render() {
-    return (
-      <Root onClick={this.handleClick}>
-        { this.state.value }
+    return(
+      <Root onClick={() => this.handleClick(this.props.boardIndex)}>
+        {this.state.value}
       </Root>
     )
   }
