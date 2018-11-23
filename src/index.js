@@ -14,15 +14,17 @@ class App extends Component {
       playerOne: {},
       playerTwo: {},
       gameBoardValue: Array(9).fill(''),
+      moveCounter: 1,
     }
   }
 
   componentDidMount() {
     let playerOne = this.playerFactory(1, 'X');
     let playerTwo = this.playerFactory(2, 'O');
+    
     this.setState({playerOne: playerOne, playerTwo: playerTwo})
   }
-
+  
   playerFactory = (int, symbol) => {
     // let playerName = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
     
@@ -31,12 +33,21 @@ class App extends Component {
       // playerName,
     };
   };
+  
+  playRound = (num) => {
+    this.setState({moveCounter: this.state.moveCounter + num })
+  }
+
+  currentPlayer = () => {
+    return (this.state.moveCounter % 2 === 0 ? this.state.playerTwo : this.state.playerOne)
+  }
 
   render() {
     return(
       <Root>
-        <Grid>
-        </Grid>
+        <Grid 
+          currentPlayer={this.currentPlayer}
+          playRound={this.playRound} />
       </Root>
     )
   }
