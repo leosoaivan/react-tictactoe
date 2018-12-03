@@ -23,15 +23,16 @@ class Grid extends Component {
       playerTwo: {},
       gameBoard: Array(9).fill(''),
       moveCounter: 1,
+      gameOver: false,
     }
   }
 
   playerFactory = (int, symbol) => {
-    // let playerName = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
+    let name = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
     
     return {
       symbol,
-      // playerName,
+      name,
     };
   };
   
@@ -39,31 +40,80 @@ class Grid extends Component {
     let playerOne = this.playerFactory(1, 'X');
     let playerTwo = this.playerFactory(2, 'O');
     
-    this.setState({playerOne: playerOne, playerTwo: playerTwo})
+    this.setState({ playerOne: playerOne, playerTwo: playerTwo })
   }
 
   currentPlayer = () => {
     return (this.state.moveCounter % 2 === 0 ? this.state.playerTwo : this.state.playerOne)
   }
 
-  onPlayerClick = (boardIndex) => {
-    let currentPlayer = this.currentPlayer();
+  onPlayerClick = (boardIndex, currentPlayer) => {
     let playerSymbol = currentPlayer.symbol;
 
     this.storePlayerMove(parseInt(boardIndex), playerSymbol)
-    this.advanceTurn();
+    this.advanceTurn()
+    this.checkGameOver(currentPlayer)
   }
 
   storePlayerMove = (index, value) => {
     let newGameBoard = this.state.gameBoard
     newGameBoard[index] = value
 
-    this.setState({gameBoard: newGameBoard})
+    this.setState({ gameBoard: newGameBoard })
   }
   
   advanceTurn = () => {
-    this.setState({moveCounter: this.state.moveCounter + 1 })
+    this.setState({ moveCounter: this.state.moveCounter + 1 })
   }
+
+  askForRestart = (msg) => {
+    if (window.confirm(msg)) {
+      this.restartGame()
+    }
+  }
+
+  restartGame = () => {
+    this.setState(
+      {
+        playerOne: {},
+        playerTwo: {},
+        gameBoard: Array(9).fill(''),
+        moveCounter: 1,
+        gameOver: false,
+      }
+    )
+  }
+
+  checkGameOver = (currentPlayer) => {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    if (this.state.moveCounter >= 5) {
+      winConditions.forEach((c) => {
+        if (this.state.gameBoard[c[0]] === '') {
+          return;
+        } else if (this.state.gameBoard[c[0]] === this.state.gameBoard[c[1]] &&
+                   this.state.gameBoard[c[0]] === this.state.gameBoard[c[2]]) {
+          this.setState({ gameOver: true })
+          console.log(currentPlayer)
+          this.askForRestart(currentPlayer.name + " won! Play again?");
+        }
+      });
+    }
+
+    if (!this.state.gameBoard.includes('')) {
+      this.setState({ gameOver: true })
+      this.askForRestart('The game tied. Play again?');
+    }
+  };
 
   render() {
     const squares = [...Array(9).keys()].map((index) => {

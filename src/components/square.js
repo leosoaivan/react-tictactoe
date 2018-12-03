@@ -18,12 +18,14 @@ class Square extends Component {
   }
 
   handleClick = (index) => {
-    let currentPlayer = this.props.currentPlayer
+    let currentPlayer = this.props.currentPlayer()
     let playerSymbol = currentPlayer.symbol
 
     if (this.state.value === '') {
-      this.setState({value: playerSymbol})
-      this.props.onPlayerClick(index)
+      this.setState(
+        {value: playerSymbol},
+        () => this.props.onPlayerClick(index, currentPlayer)
+      )
     }
   }
 
