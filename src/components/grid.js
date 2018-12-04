@@ -79,7 +79,6 @@ class Grid extends Component {
         playerTwo: {},
         gameBoard: Array(9).fill(''),
         moveCounter: 1,
-        gameOver: false,
       }
     )
   }
@@ -102,15 +101,12 @@ class Grid extends Component {
           return;
         } else if (this.state.gameBoard[c[0]] === this.state.gameBoard[c[1]] &&
                    this.state.gameBoard[c[0]] === this.state.gameBoard[c[2]]) {
-          this.setState({ gameOver: true })
-          console.log(currentPlayer)
           this.askForRestart(currentPlayer.name + " won! Play again?");
         }
       });
     }
 
     if (!this.state.gameBoard.includes('')) {
-      this.setState({ gameOver: true })
       this.askForRestart('The game tied. Play again?');
     }
   };
