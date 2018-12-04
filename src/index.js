@@ -1,7 +1,7 @@
 import React, { } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import Grid from './components/grid';
+import Game from './components/game';
 
 const Root = styled.div`
 `;
@@ -9,7 +9,7 @@ const Root = styled.div`
 const App = () => {
   return(
     <Root>
-      <Grid />
+      <Game />
     </Root>
   )
 }

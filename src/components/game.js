@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square';
+import Modal from './modal';
+
+const Root = styled.div`
+`;
 
 const SquareList = styled.div`
   display: grid;
@@ -14,7 +18,7 @@ const SquareList = styled.div`
 }
 `;
 
-class Grid extends Component {
+class Game extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +27,8 @@ class Grid extends Component {
       playerTwo: {},
       gameBoard: Array(9).fill(''),
       moveCounter: 1,
-      gameOver: false,
+      displayModal: false,
+      gameResult: '',
     }
   }
 
@@ -51,8 +56,8 @@ class Grid extends Component {
     let playerSymbol = currentPlayer.symbol;
 
     this.storePlayerMove(parseInt(boardIndex), playerSymbol)
-    this.advanceTurn()
     this.checkGameOver(currentPlayer)
+    // this.advanceTurn()
   }
 
   storePlayerMove = (index, value) => {
@@ -84,6 +89,8 @@ class Grid extends Component {
   }
 
   checkGameOver = (currentPlayer) => {
+    let gameIsOver = false;
+
     const winConditions = [
       [0, 1, 2],
       [3, 4, 5],
@@ -101,15 +108,28 @@ class Grid extends Component {
           return;
         } else if (this.state.gameBoard[c[0]] === this.state.gameBoard[c[1]] &&
                    this.state.gameBoard[c[0]] === this.state.gameBoard[c[2]]) {
-          this.askForRestart(currentPlayer.name + " won! Play again?");
+          gameIsOver = true;
+          this.showModal();
         }
       });
+    }
+
+    if (!gameIsOver) {
+      this.advanceTurn();
     }
 
     if (!this.state.gameBoard.includes('')) {
       this.askForRestart('The game tied. Play again?');
     }
   };
+  
+  showModal = () => {
+    this.setState({displayModal: true, gameResult: 'win'})
+  }
+
+  hideModal = () => {
+    this.setState({displayModal: false})
+  }
 
   render() {
     const squares = [...Array(9).keys()].map((index) => {
@@ -121,13 +141,20 @@ class Grid extends Component {
           currentPlayer={this.currentPlayer} />
       )
     })
-
+    
     return(
-      <SquareList>
-        {squares}
-      </SquareList>
+      <Root>
+        <SquareList>
+          {squares}
+        </SquareList>
+        <Modal 
+          handleClose={this.hideModal} 
+          displayModal={this.state.displayModal} 
+          gameResult={this.state.gameResult}
+          currentPlayer={this.currentPlayer()}></Modal>
+      </Root>
     )
   }
 }
 
-export default Grid;
+export default Game;
