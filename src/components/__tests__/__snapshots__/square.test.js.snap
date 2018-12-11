@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Square Renders the Square component 1`] = `
+<styled.div
+  onClick={[Function]}
+/>
+`;
