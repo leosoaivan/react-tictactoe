@@ -17,8 +17,9 @@ class Square extends Component {
     }
   }
 
-  handleClick = (index) => {
-    let currentPlayer = this.props.currentPlayer()
+  handleClick = () => {
+    let index = this.props.boardIndex
+    let currentPlayer = this.props.currentPlayer
     let playerSymbol = currentPlayer.symbol
 
     if (this.state.value === '') {
@@ -29,9 +30,10 @@ class Square extends Component {
     }
   }
 
+
   render() {
     return(
-      <Root onClick={() => this.handleClick(this.props.boardIndex)}>
+      <Root onClick={() => this.handleClick()}>
         {this.state.value}
       </Root>
     )

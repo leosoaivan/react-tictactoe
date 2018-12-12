@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Square Renders the Square component 1`] = `
-<styled.div
-  onClick={[Function]}
+.c0 {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+<div
+  class="c0"
 />
 `;
