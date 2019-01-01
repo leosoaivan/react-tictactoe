@@ -29,51 +29,58 @@ class Game extends Component {
       moveCounter: 1,
       displayModal: false,
       gameResult: '',
-    }
+    };
+  }
+
+  componentDidMount() {
+    const playerOne = this.playerFactory(1, 'X');
+    const playerTwo = this.playerFactory(2, 'O');
+
+    this.setState({ playerOne, playerTwo });
   }
 
   playerFactory = (int, symbol) => {
-    let name = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
-    
+    const name = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
+
     return {
       symbol,
       name,
     };
   };
-  
-  componentDidMount() {
-    let playerOne = this.playerFactory(1, 'X');
-    let playerTwo = this.playerFactory(2, 'O');
-    
-    this.setState({ playerOne: playerOne, playerTwo: playerTwo })
-  }
 
   currentPlayer = () => {
-    return (this.state.moveCounter % 2 === 0 ? this.state.playerTwo : this.state.playerOne)
-  }
+    const {
+      moveCounter, playerOne, playerTwo,
+    } = this.state;
+
+    return (moveCounter % 2 === 0 ? playerTwo : playerOne);
+  };
 
   onPlayerClick = (boardIndex, currentPlayer) => {
-    let playerSymbol = currentPlayer.symbol;
+    const playerSymbol = currentPlayer.symbol;
 
-    this.storePlayerMove(parseInt(boardIndex), playerSymbol)
-    this.checkGameOver(currentPlayer)
+    this.storePlayerMove(parseInt(boardIndex, 10), playerSymbol);
+    this.checkGameOver(currentPlayer);
     // this.advanceTurn()
   }
 
   storePlayerMove = (index, value) => {
-    let newGameBoard = this.state.gameBoard
-    newGameBoard[index] = value
+    const { gameBoard } = this.state;
+    const newGameBoard = gameBoard;
+    newGameBoard[index] = value;
 
-    this.setState({ gameBoard: newGameBoard })
+    this.setState({ gameBoard: newGameBoard });
   }
-  
+
   advanceTurn = () => {
-    this.setState({ moveCounter: this.state.moveCounter + 1 })
+    const { moveCounter } = this.state;
+
+    this.setState({ moveCounter: moveCounter + 1 });
   }
 
   askForRestart = (msg) => {
     if (window.confirm(msg)) {
-      this.restartGame()
+      this.restartGame();
     }
   }
 
@@ -84,11 +91,16 @@ class Game extends Component {
         playerTwo: {},
         gameBoard: Array(9).fill(''),
         moveCounter: 1,
-      }
-    )
+      },
+    );
   }
 
-  checkGameOver = (currentPlayer) => {
+  checkGameOver = () => {
+    const {
+      moveCounter,
+      gameBoard,
+    } = this.state;
+
     let gameIsOver = false;
 
     const winConditions = [
@@ -102,12 +114,10 @@ class Game extends Component {
       [2, 4, 6],
     ];
 
-    if (this.state.moveCounter >= 5) {
+    if (moveCounter >= 5) {
       winConditions.forEach((c) => {
-        if (this.state.gameBoard[c[0]] === '') {
-          return;
-        } else if (this.state.gameBoard[c[0]] === this.state.gameBoard[c[1]] &&
-                   this.state.gameBoard[c[0]] === this.state.gameBoard[c[2]]) {
+        if (gameBoard[c[0]] === gameBoard[c[1]]
+        && gameBoard[c[0]] === gameBoard[c[2]]) {
           gameIsOver = true;
           this.showModal();
         }
@@ -118,42 +128,47 @@ class Game extends Component {
       this.advanceTurn();
     }
 
-    if (!this.state.gameBoard.includes('')) {
+    if (!gameBoard.includes('')) {
       this.askForRestart('The game tied. Play again?');
     }
   };
-  
+
   showModal = () => {
-    this.setState({displayModal: true, gameResult: 'win'})
+    this.setState({ displayModal: true, gameResult: 'win' });
   }
 
   hideModal = () => {
-    this.setState({displayModal: false})
+    this.setState({ displayModal: false });
   }
 
   render() {
-    const squares = [...Array(9).keys()].map((index) => {
-      return(
-        <Square
-          key={index}
-          boardIndex={index}
-          onPlayerClick={this.onPlayerClick}
-          currentPlayer={this.currentPlayer} />
-      )
-    })
-    
-    return(
+    const squares = [...Array(9).keys()].map(index => (
+      <Square
+        key={index}
+        boardIndex={index}
+        onPlayerClick={this.onPlayerClick}
+        currentPlayer={this.currentPlayer()}
+      />
+    ));
+
+    const {
+      displayModal,
+      gameResult,
+    } = this.state;
+
+    return (
       <Root>
         <SquareList>
           {squares}
         </SquareList>
-        <Modal 
-          handleClose={this.hideModal} 
-          displayModal={this.state.displayModal} 
-          gameResult={this.state.gameResult}
-          currentPlayer={this.currentPlayer()}></Modal>
+        <Modal
+          handleClose={this.hideModal}
+          displayModal={displayModal}
+          gameResult={gameResult}
+          currentPlayer={this.currentPlayer()}
+        />
       </Root>
-    )
+    );
   }
 }
 

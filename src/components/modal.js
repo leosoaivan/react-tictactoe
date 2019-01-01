@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import '../css/modal.css';
 
 const ModalHeader = styled.div`
@@ -15,8 +16,12 @@ const ModalBody = styled.div`
   text-align: center;
 `;
 
-const Modal = ({ handleClose, displayModal, gameResult, currentPlayer = {name: '', symbol: ''} }) => {
-  const displayClassName = (true ? "modal display-block" : "modal display-none");
+const Modal = ({
+  handleClose,
+  gameResult,
+  currentPlayer,
+}) => {
+  const displayClassName = (gameResult ? 'modal display-block' : 'modal display-none');
 
   return (
     <div className={displayClassName}>
@@ -25,12 +30,26 @@ const Modal = ({ handleClose, displayModal, gameResult, currentPlayer = {name: '
           Congratulations!
         </ModalHeader>
         <ModalBody>
-          With strategy, cunning, and ruthelessness, {currentPlayer.name} has claimed total victory.
+          With strategy, cunning, and ruthelessness,
+          {currentPlayer.name}
+          has claimed total victory.
         </ModalBody>
-        <button onClick={handleClose}>Close</button>
+        <button type="button" onClick={handleClose}>Close</button>
       </section>
     </div>
-  )
-}
+  );
+};
+
+Modal.propTypes = {
+  handleClose: PropTypes.func,
+  gameResult: PropTypes.string,
+  currentPlayer: PropTypes.shape,
+};
+
+Modal.defaultProps = {
+  handleClose: () => {},
+  gameResult: '',
+  currentPlayer: {},
+};
 
 export default Modal;
