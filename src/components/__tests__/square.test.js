@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { shallow, render } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import { createSerializer } from 'enzyme-to-json';
 import Square from '../square';
 
@@ -29,6 +29,6 @@ describe('Square', () => {
 
     wrapper.simulate('click');
     expect(mockOnPlayerClick).toHaveBeenCalledTimes(1);
-    expect(wrapper.dive().find('StyledComponent').children().text()).toEqual('X');
+    expect(wrapper.children().text()).toEqual('X');
   });
 });

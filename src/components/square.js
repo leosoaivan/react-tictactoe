@@ -52,7 +52,7 @@ class Square extends Component {
 Square.propTypes = {
   boardIndex: PropTypes.number,
   onPlayerClick: PropTypes.func,
-  currentPlayer: PropTypes.shape,
+  currentPlayer: PropTypes.objectOf(PropTypes.string),
 };
 
 Square.defaultProps = {
