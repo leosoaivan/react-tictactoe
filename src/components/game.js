@@ -138,7 +138,10 @@ class Game extends Component {
   }
 
   hideModal = () => {
-    this.setState({ displayModal: false });
+    this.setState(
+      { displayModal: false },
+      console.log(this.state)
+    );
   }
 
   render() {

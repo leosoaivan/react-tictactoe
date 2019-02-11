@@ -5,7 +5,7 @@ import '../css/modal.css';
 
 const ModalHeader = styled.div`
   display: flex;
-  font-size: 120px;
+  font-size: 6em;
   justify-content: center;
   margin-top: 48px;
   margin-bottom: 48px;
@@ -17,11 +17,18 @@ const ModalBody = styled.div`
 `;
 
 const Modal = ({
-  handleClose,
+  // handleClose,
   gameResult,
   currentPlayer,
 }) => {
   const displayClassName = (gameResult ? 'modal display-block' : 'modal display-none');
+  const modalBodyMessage = `
+    With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.
+  `;
+
+  const handleClose = () => {
+    let gameResult = false;
+  }
 
   return (
     <div className={displayClassName}>
@@ -30,9 +37,7 @@ const Modal = ({
           Congratulations!
         </ModalHeader>
         <ModalBody>
-          With strategy, cunning, and ruthelessness,
-          {currentPlayer.name}
-          has claimed total victory.
+          {modalBodyMessage}
         </ModalBody>
         <button type="button" onClick={handleClose}>Close</button>
       </section>
@@ -43,7 +48,7 @@ const Modal = ({
 Modal.propTypes = {
   handleClose: PropTypes.func,
   gameResult: PropTypes.string,
-  currentPlayer: PropTypes.shape,
+  currentPlayer: PropTypes.objectOf(PropTypes.string),
 };
 
 Modal.defaultProps = {
