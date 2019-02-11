@@ -1,7 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import '../css/modal.css';
+
+const Root = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+`;
+
+const ModalContainer = styled.section`
+  position:fixed;
+  background: white;
+  width: 50%;
+  height: 80%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+`;
 
 const ModalHeader = styled.div`
   display: flex;
@@ -21,7 +40,11 @@ const Modal = ({
   gameResult,
   currentPlayer,
 }) => {
-  const displayClassName = (gameResult ? 'modal display-block' : 'modal display-none');
+  const displayClassName = {
+    if (gameResult) {
+     return { display: 'block'}
+    }
+  }; 
   const modalBodyMessage = `
     With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.
   `;
@@ -31,8 +54,8 @@ const Modal = ({
   }
 
   return (
-    <div className={displayClassName}>
-      <section className="modal-main">
+    <Root style={displayClassName}>
+      <ModalContainer>
         <ModalHeader>
           Congratulations!
         </ModalHeader>
@@ -40,8 +63,8 @@ const Modal = ({
           {modalBodyMessage}
         </ModalBody>
         <button type="button" onClick={handleClose}>Close</button>
-      </section>
-    </div>
+      </ModalContainer>>
+    </Root>
   );
 };
 
