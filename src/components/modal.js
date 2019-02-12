@@ -2,8 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const rootDisplay = {
+  true: 'block',
+  false: 'none'
+};
+
 const Root = styled.div`
-  display: none;
+  display: ${props => rootDisplay[props.displayModal]};
   position: fixed;
   top: 0;
   left: 0;
@@ -36,28 +41,27 @@ const ModalBody = styled.div`
 `;
 
 const Modal = ({
-  // handleClose,
-  gameResult,
   currentPlayer,
+  gameResult,
+  handleClose,
+  displayModal,
 }) => {
-  const displayClassName = {
-    if (gameResult) {
-     return { display: 'block'}
-    }
-  }; 
-  const modalBodyMessage = `
-    With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.
-  `;
+  let modalHeaderMessage = ''
+  let modalBodyMessage = ''
 
-  const handleClose = () => {
-    let gameResult = false;
+  if (gameResult === 'win') {
+    modalHeaderMessage = 'Congratulations';
+    modalBodyMessage =   `With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.`;
+  } else {
+    modalHeaderMessage = 'What a tired game';
+    modalBodyMessage = `Unfortunate. Sad. Demeaning to watch...a game where neither player is smart enough to outdo the other.`
   }
 
   return (
-    <Root style={displayClassName}>
+    <Root displayModal={displayModal}>
       <ModalContainer>
         <ModalHeader>
-          Congratulations!
+          {modalHeaderMessage}
         </ModalHeader>
         <ModalBody>
           {modalBodyMessage}
@@ -71,13 +75,17 @@ const Modal = ({
 Modal.propTypes = {
   handleClose: PropTypes.func,
   gameResult: PropTypes.string,
-  currentPlayer: PropTypes.objectOf(PropTypes.string),
+  currentPlayer: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  displayModal: PropTypes.bool,
 };
 
 Modal.defaultProps = {
-  handleClose: () => {},
+  handleClose: undefined,
   gameResult: '',
   currentPlayer: {},
+  displayModal: false,
 };
 
 export default Modal;
