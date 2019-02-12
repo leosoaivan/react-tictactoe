@@ -9,45 +9,16 @@ const Root = styled.div`
   background: white;
 `;
 
-class Square extends Component {
-  constructor(props) {
-    super(props);
+const Square = ({
+  onClick, value
+}) => {
 
-    this.state = {
-      value: '',
-    };
-  }
-
-  handleClick = (boardIndex, currentPlayer) => {
-    const { onPlayerClick } = this.props;
-    const { value } = this.state;
-
-    if (value === '') {
-      this.setState(
-        { value: currentPlayer.symbol },
-        () => onPlayerClick(boardIndex, currentPlayer),
-      );
-    }
-  }
-
-
-  render() {
-    const {
-      boardIndex,
-      currentPlayer,
-    } = this.props;
-
-    const {
-      value,
-    } = this.state;
-
-    return (
-      <Root onClick={() => this.handleClick(boardIndex, currentPlayer)}>
-        {value}
-      </Root>
-    );
-  }
-}
+  return(
+    <Root onClick={onClick}>
+      {value}
+    </Root>
+  )
+};
 
 Square.propTypes = {
   boardIndex: PropTypes.number,

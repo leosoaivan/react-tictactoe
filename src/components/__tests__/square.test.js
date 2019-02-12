@@ -12,23 +12,17 @@ describe('Square', () => {
       <Square />,
     );
 
+    expect(wrapper).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('Handles clicks from players', () => {
-    const mockOnPlayerClick = jest.fn();
-    const player = {
-      symbol: 'X',
-    };
+  it('Renders the Square component with a value', () => {
     const wrapper = shallow(
-      <Square
-        onPlayerClick={mockOnPlayerClick}
-        currentPlayer={player}
+      <Square 
+        value="X"
       />,
     );
 
-    wrapper.simulate('click');
-    expect(mockOnPlayerClick).toHaveBeenCalledTimes(1);
-    expect(wrapper.children().text()).toEqual('X');
-  });
+    expect()
+  })
 });
