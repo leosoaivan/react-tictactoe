@@ -56,20 +56,18 @@ class Game extends Component {
     return (moveCounter % 2 === 0 ? playerTwo : playerOne);
   };
 
-  onPlayerClick = (boardIndex, currentPlayer) => {
-    const playerSymbol = currentPlayer.symbol;
-
-    this.storePlayerMove(parseInt(boardIndex, 10), playerSymbol);
-    this.checkGameOver(currentPlayer);
-    // this.advanceTurn()
+  handleClick = (index) => {
+    this.storePlayerMove(index);
+    this.checkGameOver();
   }
 
-  storePlayerMove = (index, value) => {
-    const { gameBoard } = this.state;
-    const newGameBoard = gameBoard;
-    newGameBoard[index] = value;
+  storePlayerMove = (index) => {
+    let newGameBoard = this.state.gameBoard;
+    newGameBoard[index] = this.currentPlayer().symbol;
 
-    this.setState({ gameBoard: newGameBoard });
+    this.setState({
+      gameBoard: newGameBoard,
+    })
   }
 
   advanceTurn = () => {
@@ -115,12 +113,14 @@ class Game extends Component {
     ];
 
     if (moveCounter >= 5) {
-      winConditions.forEach((c) => {
-        if (gameBoard[c[0]] === gameBoard[c[1]]
-        && gameBoard[c[0]] === gameBoard[c[2]]) {
-          gameIsOver = true;
+      winConditions.forEach((condition) => {
+        const [a, b, c] = condition;
+        const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
+
+        if (gameBoard[a] != '' && values.every(value => value === gameBoard[a])) {
           this.showModal();
-        }
+          console.log(this.currentPlayer());
+        };
       });
     }
 
@@ -138,26 +138,40 @@ class Game extends Component {
   }
 
   hideModal = () => {
+    this.clearGame();
+  }
+
+  clearGame = () => {
     this.setState(
-      { displayModal: false },
-      console.log(this.state)
-    );
+      {
+        playerOne: {},
+        playerTwo: {},
+        gameBoard: Array(9).fill(''),
+        moveCounter: 1,
+        displayModal: false,
+        gameResult: '',
+      }
+    )
   }
 
   render() {
-    const squares = [...Array(9).keys()].map(index => (
-      <Square
-        key={index}
-        boardIndex={index}
-        onPlayerClick={this.onPlayerClick}
-        currentPlayer={this.currentPlayer()}
-      />
-    ));
-
     const {
       displayModal,
+      gameBoard,
       gameResult,
     } = this.state;
+
+    const squares = gameBoard.map((value, index) => {
+      let key = `square_${index}`;
+
+      return(
+        <Square
+          key={key}
+          onClick={() => this.handleClick(index)}
+          value={value}
+        />
+      )
+    });
 
     return (
       <Root>
