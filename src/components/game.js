@@ -118,8 +118,14 @@ class Game extends Component {
         const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
 
         if (gameBoard[a] != '' && values.every(value => value === gameBoard[a])) {
-          this.showModal();
-          console.log(this.currentPlayer());
+          gameIsOver = true
+
+          this.setState(
+            {
+              displayModal: true,
+              gameResult: 'win'
+            }
+          );
         };
       });
     }
@@ -132,10 +138,6 @@ class Game extends Component {
       this.askForRestart('The game tied. Play again?');
     }
   };
-
-  showModal = () => {
-    this.setState({ displayModal: true, gameResult: 'win' });
-  }
 
   hideModal = () => {
     this.clearGame();
