@@ -117,7 +117,7 @@ class Game extends Component {
         const [a, b, c] = condition;
         const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
 
-        if (gameBoard[a] != '' && values.every(value => value === gameBoard[a])) {
+        if (gameBoard[a] !== '' && values.every(value => value === gameBoard[a])) {
           gameIsOver = true
 
           this.setState(
@@ -146,8 +146,6 @@ class Game extends Component {
   clearGame = () => {
     this.setState(
       {
-        playerOne: {},
-        playerTwo: {},
         gameBoard: Array(9).fill(''),
         moveCounter: 1,
         displayModal: false,
