@@ -29,7 +29,7 @@ const ModalContainer = styled.section`
 
 const ModalHeader = styled.div`
   display: flex;
-  font-size: 6em;
+  font-size: 6vw;
   justify-content: center;
   margin-top: 48px;
   margin-bottom: 48px;

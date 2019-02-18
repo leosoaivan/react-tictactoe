@@ -6,6 +6,20 @@ import Modal from './modal';
 const Root = styled.div`
 `;
 
+const PlayerList = styled.div`
+  width: 100%;
+  margins: auto;
+  text-align: center;
+`;
+
+const PlayerSpan = styled.span`
+  font-size: 3em;
+  font-family: 'Montserrat', sans serif;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+`;
+
 const SquareList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -162,6 +176,8 @@ class Game extends Component {
       displayModal,
       gameBoard,
       gameResult,
+      playerOne,
+      playerTwo,
     } = this.state;
 
     const squares = gameBoard.map((value, index) => {
@@ -178,6 +194,17 @@ class Game extends Component {
 
     return (
       <Root>
+        <PlayerList>
+          <PlayerSpan>
+            {playerOne.name} (X)
+          </PlayerSpan>
+          <span style={{ fontSize: '1.5em', color: 'CornflowerBlue' }}>
+            vs.
+          </span>
+          <PlayerSpan>
+            {playerTwo.name} (O)
+          </PlayerSpan>
+        </PlayerList>
         <SquareList>
           {squares}
         </SquareList>
