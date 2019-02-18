@@ -56,6 +56,17 @@ class Game extends Component {
     return (moveCounter % 2 === 0 ? playerTwo : playerOne);
   };
 
+  closeModal = () => {
+    this.setState(
+      {
+        gameBoard: Array(9).fill(''),
+        moveCounter: 1,
+        displayModal: false,
+        gameResult: '',
+      }
+    )
+  }
+
   handleClick = (index) => {
     this.storePlayerMove(index);
     this.checkGameOver();
@@ -122,33 +133,29 @@ class Game extends Component {
 
           this.setState(
             {
+              gameResult: 'win',
               displayModal: true,
-              gameResult: 'win'
             }
           );
         };
+
+        if (!gameBoard.includes('') && !gameIsOver) {
+          gameIsOver = true
+
+          this.setState(
+            {
+              displayModal: true,
+              gameResult: 'tie'
+            }
+          );
+        }
       });
     }
 
     if (!gameIsOver) {
       this.advanceTurn();
     }
-
-    if (!gameBoard.includes('')) {
-      this.askForRestart('The game tied. Play again?');
-    }
   };
-
-  closeModal = () => {
-    this.setState(
-      {
-        gameBoard: Array(9).fill(''),
-        moveCounter: 1,
-        displayModal: false,
-        gameResult: '',
-      }
-    )
-  }
 
   render() {
     const {
