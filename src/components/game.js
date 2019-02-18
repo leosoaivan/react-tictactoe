@@ -139,11 +139,7 @@ class Game extends Component {
     }
   };
 
-  hideModal = () => {
-    this.clearGame();
-  }
-
-  clearGame = () => {
+  closeModal = () => {
     this.setState(
       {
         gameBoard: Array(9).fill(''),
@@ -179,7 +175,7 @@ class Game extends Component {
           {squares}
         </SquareList>
         <Modal
-          handleClose={this.hideModal}
+          closeModal={this.closeModal}
           displayModal={displayModal}
           gameResult={gameResult}
           currentPlayer={this.currentPlayer()}

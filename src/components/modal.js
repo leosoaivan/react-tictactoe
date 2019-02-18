@@ -43,7 +43,7 @@ const ModalBody = styled.div`
 const Modal = ({
   currentPlayer,
   gameResult,
-  handleClose,
+  closeModal,
   displayModal,
 }) => {
   let modalHeaderMessage = ''
@@ -66,14 +66,14 @@ const Modal = ({
         <ModalBody>
           {modalBodyMessage}
         </ModalBody>
-        <button type="button" onClick={handleClose}>Close</button>
+        <button type="button" onClick={closeModal}>Close</button>
       </ModalContainer>>
     </Root>
   );
 };
 
 Modal.propTypes = {
-  handleClose: PropTypes.func,
+  closeModal: PropTypes.func,
   gameResult: PropTypes.string,
   currentPlayer: PropTypes.shape({
     name: PropTypes.string
@@ -82,9 +82,9 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  handleClose: undefined,
-  gameResult: '',
-  currentPlayer: {},
+  closeModal: undefined,
+  gameResult: undefined,
+  currentPlayer: undefined,
   displayModal: false,
 };
 
