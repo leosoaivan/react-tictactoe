@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Square from './square';
 import Modal from './modal';
+import PlayerName from './playerName';
 
 const Root = styled.div`
 `;
@@ -12,25 +13,17 @@ const PlayerList = styled.div`
   grid-template-columns: 1fr 100px 1fr;
 `;
 
-const PlayerStyling = css`
-  box-sizing: border-box;
-  font-size: 3em;
-  font-family: 'Montserrat', sans serif;
-  font-weight: 600;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  min-width: 0;
-  max-width: calc(100% - 0.5em);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: no-wrap;
-`;
-
-const PlayerOne = styled.div`
-  ${PlayerStyling}
+const PlayerOne = styled(PlayerName)`
   grid-column-start: 1;
   grid-column-end: 2;
   justify-self: end;
+  align-self: end;
+`;
+
+const PlayerTwo = styled(PlayerName)`
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: start;
   align-self: end;
 `;
 
@@ -42,14 +35,6 @@ const Versus = styled.div`
   justify-self: center;
   align-self: end;
   padding-bottom: 5px;
-`;
-
-const PlayerTwo = styled.div`
-  ${PlayerStyling}
-  grid-column-start: 3;
-  grid-column-end: 4;
-  justify-self: start;
-  align-self: end;
 `;
 
 const SquareList = styled.div`
@@ -227,17 +212,17 @@ class Game extends Component {
     return (
       <Root>
         <PlayerList>
-          <PlayerOne>
-            {playerOne.name}
-            (X)
-          </PlayerOne>
+          <PlayerOne
+            name={playerOne.name}
+            symbol={playerOne.symbol}
+          />
           <Versus>
             versus
           </Versus>
-          <PlayerTwo>
-            {playerTwo.name}
-            (O)
-          </PlayerTwo>
+          <PlayerTwo
+            name={playerTwo.name}
+            symbol={playerTwo.symbol}
+          />
         </PlayerList>
         <SquareList>
           {squares}
