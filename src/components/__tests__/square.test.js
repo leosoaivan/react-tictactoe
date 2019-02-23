@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { createSerializer } from 'enzyme-to-json';
 import Square from '../square';
 
@@ -15,14 +15,4 @@ describe('Square', () => {
     expect(wrapper).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('Renders the Square component with a value', () => {
-    const wrapper = shallow(
-      <Square 
-        value="X"
-      />,
-    );
-
-    expect()
-  })
 });

@@ -1,16 +1,16 @@
 import React from 'react';
 import 'jest-styled-components';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { createSerializer } from 'enzyme-to-json';
 import Modal from '../modal';
-import {createSerializer} from 'enzyme-to-json';
- 
-expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
+
+expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 
 describe('Modal', () => {
   it('Renders a Modal component', () => {
     const wrapper = shallow(
       <Modal
-        displayModal={true}
+        displayModal
       />,
     );
 
@@ -20,7 +20,7 @@ describe('Modal', () => {
 
   it('Renders an invisible Modal component', () => {
     const wrapper = shallow(
-      <Modal 
+      <Modal
         displayModal={false}
       />,
     );

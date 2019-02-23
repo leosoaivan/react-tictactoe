@@ -9,27 +9,20 @@ const Root = styled.div`
   background: white;
 `;
 
-const Square = ({
-  onClick, value
-}) => {
-
-  return(
-    <Root onClick={onClick}>
-      {value}
-    </Root>
-  )
-};
+const Square = ({ onClick, value }) => (
+  <Root onClick={onClick}>
+    {value}
+  </Root>
+);
 
 Square.propTypes = {
-  boardIndex: PropTypes.number,
-  onPlayerClick: PropTypes.func,
-  currentPlayer: PropTypes.objectOf(PropTypes.string),
+  onClick: PropTypes.func,
+  value: PropTypes.string,
 };
 
 Square.defaultProps = {
-  boardIndex: undefined,
-  onPlayerClick: () => {},
-  currentPlayer: {},
+  onClick: null,
+  value: null,
 };
 
 export default Square;

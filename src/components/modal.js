@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const rootDisplay = {
   true: 'block',
-  false: 'none'
+  false: 'none',
 };
 
 const Root = styled.div`
@@ -46,15 +46,15 @@ const Modal = ({
   closeModal,
   displayModal,
 }) => {
-  let modalHeaderMessage = ''
-  let modalBodyMessage = ''
+  let modalHeaderMessage = '';
+  let modalBodyMessage = '';
 
   if (gameResult === 'win') {
     modalHeaderMessage = 'Congratulations';
-    modalBodyMessage =   `With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.`;
+    modalBodyMessage = `With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.`;
   } else {
     modalHeaderMessage = 'What a tired game';
-    modalBodyMessage = `Unfortunate. Sad. Demeaning to watch...a game where neither player is smart enough to outdo the other.`
+    modalBodyMessage = 'Unfortunate. Sad. Demeaning to watch...a game where neither player is smart enough to outdo the other.';
   }
 
   return (
@@ -67,7 +67,7 @@ const Modal = ({
           {modalBodyMessage}
         </ModalBody>
         <button type="button" onClick={closeModal}>Close</button>
-      </ModalContainer>>
+      </ModalContainer>
     </Root>
   );
 };
@@ -76,7 +76,7 @@ Modal.propTypes = {
   closeModal: PropTypes.func,
   gameResult: PropTypes.string,
   currentPlayer: PropTypes.shape({
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   displayModal: PropTypes.bool,
 };

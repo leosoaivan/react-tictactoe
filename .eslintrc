@@ -3,7 +3,8 @@
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "jest"
+    "jest",
+    "eslint-plugin-jest"
   ],
   "rules": {
     "no-undef": [ 1 ],

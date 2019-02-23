@@ -109,8 +109,8 @@ class Game extends Component {
         moveCounter: 1,
         displayModal: false,
         gameResult: '',
-      }
-    )
+      },
+    );
   }
 
   handleClick = (index) => {
@@ -119,12 +119,12 @@ class Game extends Component {
   }
 
   storePlayerMove = (index) => {
-    let newGameBoard = this.state.gameBoard;
+    const { newGameBoard } = this.state;
     newGameBoard[index] = this.currentPlayer().symbol;
 
     this.setState({
       gameBoard: newGameBoard,
-    })
+    });
   }
 
   advanceTurn = () => {
@@ -175,24 +175,24 @@ class Game extends Component {
         const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
 
         if (gameBoard[a] !== '' && values.every(value => value === gameBoard[a])) {
-          gameIsOver = true
+          gameIsOver = true;
 
           this.setState(
             {
               gameResult: 'win',
               displayModal: true,
-            }
+            },
           );
-        };
+        }
 
         if (!gameBoard.includes('') && !gameIsOver) {
-          gameIsOver = true
+          gameIsOver = true;
 
           this.setState(
             {
               displayModal: true,
-              gameResult: 'tie'
-            }
+              gameResult: 'tie',
+            },
           );
         }
       });
@@ -213,28 +213,30 @@ class Game extends Component {
     } = this.state;
 
     const squares = gameBoard.map((value, index) => {
-      let key = `square_${index}`;
+      const key = `square_${index}`;
 
-      return(
+      return (
         <Square
           key={key}
           onClick={() => this.handleClick(index)}
           value={value}
         />
-      )
+      );
     });
 
     return (
       <Root>
         <PlayerList>
           <PlayerOne>
-            {playerOne.name} (X)
+            {playerOne.name}
+            (X)
           </PlayerOne>
           <Versus>
             versus
           </Versus>
           <PlayerTwo>
-            {playerTwo.name} (O)
+            {playerTwo.name}
+            (O)
           </PlayerTwo>
         </PlayerList>
         <SquareList>
