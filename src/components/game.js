@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Square from './square';
 import Modal from './modal';
 
@@ -7,17 +7,49 @@ const Root = styled.div`
 `;
 
 const PlayerList = styled.div`
-  width: 100%;
-  margins: auto;
-  text-align: center;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
 `;
 
-const PlayerSpan = styled.span`
+const PlayerStyling = css`
+  box-sizing: border-box;
   font-size: 3em;
   font-family: 'Montserrat', sans serif;
   font-weight: 600;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  min-width: 0;
+  max-width: calc(100% - 0.5em);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: no-wrap;
+`;
+
+const PlayerOne = styled.div`
+  ${PlayerStyling}
+  grid-column-start: 1;
+  grid-column-end: 2;
+  justify-self: end;
+  align-self: end;
+`;
+
+const Versus = styled.div`
+  font-size: 1.5em;
+  color: CornflowerBlue;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+  align-self: end;
+  padding-bottom: 5px;
+`;
+
+const PlayerTwo = styled.div`
+  ${PlayerStyling}
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: start;
+  align-self: end;
 `;
 
 const SquareList = styled.div`
@@ -195,15 +227,15 @@ class Game extends Component {
     return (
       <Root>
         <PlayerList>
-          <PlayerSpan>
+          <PlayerOne>
             {playerOne.name} (X)
-          </PlayerSpan>
-          <span style={{ fontSize: '1.5em', color: 'CornflowerBlue' }}>
-            vs.
-          </span>
-          <PlayerSpan>
+          </PlayerOne>
+          <Versus>
+            versus
+          </Versus>
+          <PlayerTwo>
             {playerTwo.name} (O)
-          </PlayerSpan>
+          </PlayerTwo>
         </PlayerList>
         <SquareList>
           {squares}
