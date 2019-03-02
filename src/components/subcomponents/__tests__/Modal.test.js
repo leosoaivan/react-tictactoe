@@ -2,7 +2,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { shallow } from 'enzyme';
 import { createSerializer } from 'enzyme-to-json';
-import Modal from '../modal';
+import Modal from '../Modal';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 
