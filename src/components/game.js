@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Square from './square';
-import GameOverModal from './subcomponents/GameOverModal';
+import Square from './atoms/Square';
+import GameOverModal from './compounds/GameOverModal';
 import PlayerName from './playerName';
 
 const Root = styled.div`

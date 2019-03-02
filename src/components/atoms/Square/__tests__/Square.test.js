@@ -2,7 +2,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { render } from 'enzyme';
 import { createSerializer } from 'enzyme-to-json';
-import Square from '../square';
+import Square from '..';
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 
