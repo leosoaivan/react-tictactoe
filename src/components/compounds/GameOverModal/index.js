@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../atoms/Modal';
+import Modal from '../../atoms/Modal';
 
 const GameOverModal = ({
   currentPlayer,

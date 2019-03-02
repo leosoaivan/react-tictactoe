@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square';
-import Modal from './modal';
+import GameOverModal from './subcomponents/GameOverModal';
 import PlayerName from './playerName';
 
 const Root = styled.div`
@@ -104,11 +104,11 @@ class Game extends Component {
   }
 
   storePlayerMove = (index) => {
-    const { newGameBoard } = this.state;
-    newGameBoard[index] = this.currentPlayer().symbol;
+    const { gameBoard } = this.state;
+    gameBoard[index] = this.currentPlayer().symbol;
 
     this.setState({
-      gameBoard: newGameBoard,
+      gameBoard,
     });
   }
 
@@ -227,11 +227,11 @@ class Game extends Component {
         <SquareList>
           {squares}
         </SquareList>
-        <Modal
-          closeModal={this.closeModal}
+        <GameOverModal
+          currentPlayer={this.currentPlayer()}
           displayModal={displayModal}
           gameResult={gameResult}
-          currentPlayer={this.currentPlayer()}
+          onClick={this.closeModal}
         />
       </Root>
     );
