@@ -67,21 +67,8 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    // const playerOne = this.playerFactory(1, 'X');
-    // const playerTwo = this.playerFactory(2, 'O');
-
-    // this.setState({ playerOne, playerTwo });
     this.setState({ displayFormModal: true });
   }
-
-  playerFactory = (int, symbol) => {
-    const name = prompt(`You are Player ${int}. What is your name?`, `Player ${int}`);
-
-    return {
-      symbol,
-      name,
-    };
-  };
 
   currentPlayer = () => {
     const {
@@ -133,12 +120,6 @@ class Game extends Component {
     const { moveCounter } = this.state;
 
     this.setState({ moveCounter: moveCounter + 1 });
-  }
-
-  askForRestart = (msg) => {
-    if (window.confirm(msg)) {
-      this.restartGame();
-    }
   }
 
   restartGame = () => {

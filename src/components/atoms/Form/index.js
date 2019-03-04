@@ -6,10 +6,15 @@ const Root = styled.form`
   width: 100%;
 `;
 
-const InputDom = styled.div`
+const InputContainer = styled.div`
   width: 100%;
   margin: 10px 0 40px 0;
-  text-align: left;
+  text-align: center;
+`;
+
+const InputDom = styled.input`
+  width: 50%;
+  margin: auto;
 `;
 
 const CloseButton = styled.button`
@@ -64,20 +69,30 @@ class Form extends Component {
 
     return (
       <Root onSubmit={this.handleSubmit}>
-        <InputDom>
-          <label id="player1" htmlFor="player1">
-            {labelOne}
-            <br />
-            <input type="text" name="playerOneName" value={playerOneName} onChange={this.handleChange} placeholder="Player One" required />
-          </label>
-        </InputDom>
-        <InputDom>
-          <label id="player2" htmlFor="player2">
-            {labelTwo}
-            <br />
-            <input type="text" name="playerTwoName" value={playerTwoName} onChange={this.handleChange} placeholder="Player Two" required />
-          </label>
-        </InputDom>
+        <InputContainer>
+          {labelOne}
+          <br />
+          <InputDom
+            type="text"
+            name="playerOneName"
+            value={playerOneName}
+            onChange={this.handleChange}
+            placeholder="Player One"
+            required
+          />
+        </InputContainer>
+        <InputContainer>
+          {labelTwo}
+          <br />
+          <InputDom
+            type="text"
+            name="playerTwoName"
+            value={playerTwoName}
+            onChange={this.handleChange}
+            placeholder="Player Two"
+            required
+          />
+        </InputContainer>
         <CloseButton type="submit">
           Submit
         </CloseButton>
