@@ -27,7 +27,7 @@ const PlayerName = ({ className, name, symbol }) => {
 };
 
 PlayerName.propTypes = {
-  className: PropTypes.element,
+  className: PropTypes.string,
   name: PropTypes.string,
   symbol: PropTypes.string,
 };

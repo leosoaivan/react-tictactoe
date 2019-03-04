@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './atoms/Square';
 import GameOverModal from './compounds/GameOverModal';
+import PlayerFormModal from './compounds/PlayerFormModal';
 import PlayerName from './playerName';
 
 const Root = styled.div`
+  font-family: 'Montserrat', sans serif;
 `;
 
 const PlayerList = styled.div`
@@ -58,16 +60,18 @@ class Game extends Component {
       playerTwo: {},
       gameBoard: Array(9).fill(''),
       moveCounter: 1,
-      displayModal: false,
+      displayFormModal: false,
+      displayGameModal: false,
       gameResult: '',
     };
   }
 
   componentDidMount() {
-    const playerOne = this.playerFactory(1, 'X');
-    const playerTwo = this.playerFactory(2, 'O');
+    // const playerOne = this.playerFactory(1, 'X');
+    // const playerTwo = this.playerFactory(2, 'O');
 
-    this.setState({ playerOne, playerTwo });
+    // this.setState({ playerOne, playerTwo });
+    this.setState({ displayFormModal: true });
   }
 
   playerFactory = (int, symbol) => {
@@ -92,11 +96,24 @@ class Game extends Component {
       {
         gameBoard: Array(9).fill(''),
         moveCounter: 1,
-        displayModal: false,
+        displayGameModal: false,
         gameResult: '',
       },
     );
   }
+
+  handleSetPlayerNames = (playerOneName, playerTwoName) => {
+    this.setState({
+      playerOne: {
+        name: playerOneName,
+        symbol: 'X',
+      },
+      playerTwo: {
+        name: playerTwoName,
+        symbol: 'O',
+      },
+    });
+  };
 
   handleClick = (index) => {
     this.storePlayerMove(index);
@@ -165,7 +182,7 @@ class Game extends Component {
           this.setState(
             {
               gameResult: 'win',
-              displayModal: true,
+              displayGameModal: true,
             },
           );
         }
@@ -175,7 +192,7 @@ class Game extends Component {
 
           this.setState(
             {
-              displayModal: true,
+              displayGameModal: true,
               gameResult: 'tie',
             },
           );
@@ -190,7 +207,8 @@ class Game extends Component {
 
   render() {
     const {
-      displayModal,
+      displayFormModal,
+      displayGameModal,
       gameBoard,
       gameResult,
       playerOne,
@@ -227,11 +245,16 @@ class Game extends Component {
         <SquareList>
           {squares}
         </SquareList>
+        <PlayerFormModal
+          displayModal={displayFormModal}
+          onSetPlayerNames={this.handleSetPlayerNames}
+        />
         <GameOverModal
           currentPlayer={this.currentPlayer()}
-          displayModal={displayModal}
+          displayModal={displayGameModal}
           gameResult={gameResult}
           onClick={this.closeModal}
+          displayButton
         />
       </Root>
     );

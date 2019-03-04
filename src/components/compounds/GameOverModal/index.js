@@ -24,7 +24,8 @@ const GameOverModal = ({
       displayModal={displayModal}
       modalHeader={modalHeaderMessage}
       modalBody={modalBodyMessage}
-      onClick={onClick}
+      onCloseModal={onClick}
+      displayButton
     />
   );
 };

@@ -7,6 +7,11 @@ const rootDisplay = {
   false: 'none',
 };
 
+const buttonDisplay = {
+  true: 'block',
+  false: 'none',
+};
+
 const Root = styled.div`
   display: ${props => rootDisplay[props.displayModal]};
   position: fixed;
@@ -21,18 +26,18 @@ const ModalContainer = styled.section`
   position:fixed;
   background: white;
   width: 50%;
-  height: 80%;
-  top:50%;
+  height: 50%;
+  top:35%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 5%;
+  text-align: center;
 `;
 
 const ModalHeader = styled.div`
-  display: flex;
-  font-size: 6vw;
-  justify-content: center;
-  margin-top: 48px;
-  margin-bottom: 48px;
+  font-size: 5vw;
+  text-align: center
+  margin: 48px 0px;
 `;
 
 const ModalBody = styled.div`
@@ -41,13 +46,29 @@ const ModalBody = styled.div`
 `;
 
 const CloseButton = styled.button`
+  display: ${props => buttonDisplay[props.displayButton]};
+  position: fixed;
+  margin: auto;
+  height: 40px;
+  width: 50%;
+  background-color: green;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  border: none;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: aquamarine;
+  }
 `;
 
 const Modal = ({
+  displayButton,
   displayModal,
   modalHeader,
   modalBody,
-  onClick,
+  onCloseModal,
 }) => (
   (
     <Root displayModal={displayModal}>
@@ -58,7 +79,10 @@ const Modal = ({
         <ModalBody>
           {modalBody}
         </ModalBody>
-        <CloseButton onClick={onClick}>
+        <CloseButton
+          displayButton={displayButton}
+          onClick={onCloseModal}
+        >
           Submit
         </CloseButton>
       </ModalContainer>
@@ -67,17 +91,19 @@ const Modal = ({
 );
 
 Modal.propTypes = {
+  displayButton: PropTypes.bool,
   displayModal: PropTypes.bool,
   modalHeader: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   modalBody: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  onClick: PropTypes.func,
+  onCloseModal: PropTypes.func,
 };
 
 Modal.defaultProps = {
+  displayButton: false,
   displayModal: false,
   modalHeader: null,
   modalBody: null,
-  onClick: null,
+  onCloseModal: null,
 };
 
 export default Modal;
