@@ -23,7 +23,7 @@ const Root = styled.div`
 `;
 
 const ModalContainer = styled.section`
-  position:fixed;
+  position: fixed;
   background: white;
   width: 50%;
   height: 50%;
@@ -47,8 +47,7 @@ const ModalBody = styled.div`
 
 const CloseButton = styled.button`
   display: ${props => buttonDisplay[props.displayButton]};
-  position: fixed;
-  margin: auto;
+  margin: 20px auto auto auto;
   height: 40px;
   width: 50%;
   background-color: green;
@@ -59,7 +58,7 @@ const CloseButton = styled.button`
   border-radius: 2px;
 
   &:hover {
-    background-color: aquamarine;
+    background-color: darkseagreen;
   }
 `;
 
@@ -69,8 +68,10 @@ const Modal = ({
   modalHeader,
   modalBody,
   onCloseModal,
-}) => (
-  (
+}) => {
+  const buttonText = 'Try again, you\'ll feel better';
+
+  return (
     <Root displayModal={displayModal}>
       <ModalContainer>
         <ModalHeader>
@@ -83,12 +84,12 @@ const Modal = ({
           displayButton={displayButton}
           onClick={onCloseModal}
         >
-          Submit
+          {buttonText}
         </CloseButton>
       </ModalContainer>
     </Root>
-  )
-);
+  );
+};
 
 Modal.propTypes = {
   displayButton: PropTypes.bool,

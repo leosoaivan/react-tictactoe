@@ -29,7 +29,7 @@ const CloseButton = styled.button`
   border-radius: 2px;
 
   &:hover {
-    background-color: aquamarine;
+    background-color: darkseagreen;
   }
 `;
 
