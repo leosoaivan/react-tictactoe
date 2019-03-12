@@ -56,8 +56,14 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      playerOne: {},
-      playerTwo: {},
+      playerOne: {
+        name: null,
+        symbol: 'X',
+      },
+      playerTwo: {
+        name: null,
+        symbol: 'O',
+      },
       gameBoard: Array(9).fill(''),
       moveCounter: 1,
       displayFormModal: false,

@@ -27,7 +27,7 @@ const ModalContainer = styled.section`
   background: white;
   width: 50%;
   height: 50%;
-  top:35%;
+  top:40%;
   left:50%;
   transform: translate(-50%,-50%);
   padding: 5%;

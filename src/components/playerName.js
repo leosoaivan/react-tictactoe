@@ -17,7 +17,7 @@ const Root = styled.div`
 `;
 
 const PlayerName = ({ className, name, symbol }) => {
-  const displayedName = `${name} (${symbol})`;
+  const displayedName = (name ? `${name} (${symbol})` : `(${symbol})`);
 
   return (
     <Root className={className}>
