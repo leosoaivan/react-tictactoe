@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NameDisplay Renders the NameDisplay component with two player names and one 'versus' 1`] = `
+.c2 {
+  box-sizing: border-box;
+  font-size: 3em;
+  font-family: 'Montserrat',sans serif;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  min-width: 0;
+  max-width: calc(100% - 0.5em);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: no-wrap;
+}
+
+.c0 {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+}
+
+.c1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  justify-self: end;
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+}
+
+.c4 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: start;
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+}
+
+.c3 {
+  font-size: 1.5em;
+  color: CornflowerBlue;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+  -webkit-align-self: end;
+  -ms-flex-item-align: end;
+  align-self: end;
+  padding-bottom: 5px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1 c2"
+  >
+    ()
+  </div>
+  <div
+    className="c3"
+  >
+    versus
+  </div>
+  <div
+    className="c4 c2"
+  >
+    ()
+  </div>
+</div>
+`;
