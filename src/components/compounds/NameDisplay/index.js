@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PlayerName from '../../atoms/PlayerName';
-import PlayerType from '../../../types/playerPropType';
+import PlayerPropType from '../../../types/PlayerPropType';
 
 const Root = styled.div`
   box-sizing: border-box;
@@ -50,8 +50,8 @@ const NameDisplay = ({ playerOne, playerTwo }) => (
 );
 
 NameDisplay.propTypes = {
-  playerOne: PlayerType,
-  playerTwo: PlayerType,
+  playerOne: PlayerPropType,
+  playerTwo: PlayerPropType,
 };
 
 NameDisplay.defaultProps = {
