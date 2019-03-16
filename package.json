@@ -1,6 +1,7 @@
 {
   "name": "react-tictactoe",
   "version": "0.1.0",
+  "homepage": "http://leosoaivan.github.io/react-tictactoe",
   "private": true,
   "dependencies": {
     "acorn": "^6.1.1",
