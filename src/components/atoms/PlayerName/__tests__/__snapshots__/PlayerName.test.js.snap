@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayerName Renders a PlayerName component with a name 1`] = `
+.c0 {
+  box-sizing: border-box;
+  font-size: 3em;
+  font-family: 'Montserrat',sans serif;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  min-width: 0;
+  max-width: calc(100% - 0.5em);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: no-wrap;
+}
+
+<div
+  className="c0"
+>
+  Player One (X)
+</div>
+`;
+
+exports[`PlayerName Renders a PlayerName component without a name 1`] = `
+.c0 {
+  box-sizing: border-box;
+  font-size: 3em;
+  font-family: 'Montserrat',sans serif;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  min-width: 0;
+  max-width: calc(100% - 0.5em);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: no-wrap;
+}
+
+<div
+  className="c0"
+>
+  (X)
+</div>
+`;

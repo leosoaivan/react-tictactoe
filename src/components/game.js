@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Square from './atoms/Square';
 import GameOverModal from './compounds/GameOverModal';
 import PlayerFormModal from './compounds/PlayerFormModal';
-import PlayerName from './playerName';
+import PlayerName from './atoms/PlayerName';
 
 const Root = styled.div`
   font-family: 'Montserrat', sans serif;

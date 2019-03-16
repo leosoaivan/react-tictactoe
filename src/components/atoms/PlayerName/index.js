@@ -29,13 +29,12 @@ const PlayerName = ({ className, name, symbol }) => {
 PlayerName.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
-  symbol: PropTypes.string,
+  symbol: PropTypes.string.isRequired,
 };
 
 PlayerName.defaultProps = {
   className: null,
   name: null,
-  symbol: null,
 };
 
 export default PlayerName;
