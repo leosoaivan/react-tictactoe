@@ -6,12 +6,11 @@ import Game from './components/game';
 const Root = styled.div`
 `;
 
-const App = () => {
-  return(
-    <Root>
-      <Game />
-    </Root>
-  )
-}
+const App = () => (
+  <Root>
+    <Game />
+  </Root>
+);
+
 
 ReactDOM.render(<App />, document.querySelector('#root'));
