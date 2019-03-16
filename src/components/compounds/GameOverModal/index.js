@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from '../../atoms/Modal';
 
 const GameOverModal = ({
-  currentPlayer,
+  currentPlayerName,
   displayModal,
   gameResult,
   onClick,
@@ -13,7 +13,7 @@ const GameOverModal = ({
 
   if (gameResult === 'win') {
     modalHeaderMessage = 'Congratulations';
-    modalBodyMessage = `With strategy, cunning, and ruthelessness, ${currentPlayer.name} has claimed absolute victory.`;
+    modalBodyMessage = `With strategy, cunning, and ruthelessness, ${currentPlayerName} has claimed absolute victory.`;
   } else {
     modalHeaderMessage = 'What a tired game';
     modalBodyMessage = 'Unfortunate. Sad. Demeaning to watch...a game where neither player is smart enough to outdo the other.';
@@ -31,16 +31,14 @@ const GameOverModal = ({
 };
 
 GameOverModal.propTypes = {
-  currentPlayer: PropTypes.shape({
-    name: PropTypes.string,
-  }),
+  currentPlayerName: PropTypes.string,
   onClick: PropTypes.func,
   displayModal: PropTypes.bool,
   gameResult: PropTypes.string,
 };
 
 GameOverModal.defaultProps = {
-  currentPlayer: undefined,
+  currentPlayerName: '',
   displayModal: false,
   gameResult: undefined,
   onClick: undefined,

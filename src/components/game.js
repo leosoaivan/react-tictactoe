@@ -198,7 +198,7 @@ class Game extends Component {
           onSetPlayerNames={this.handleSetPlayerNames}
         />
         <GameOverModal
-          currentPlayer={this.currentPlayer()}
+          currentPlayerName={this.currentPlayer().name}
           displayModal={displayGameModal}
           gameResult={gameResult}
           onClick={this.closeModal}
