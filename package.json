@@ -1,12 +1,13 @@
 {
   "name": "react-tictactoe",
   "version": "0.1.0",
-  "homepage": "http://leosoaivan.github.io/react-tictactoe",
+  "homepage": "https://leosoaivan.dev/react-tictactoe/",
   "private": true,
   "dependencies": {
     "acorn": "^6.1.1",
     "ajv": "^6.10.0",
     "eslint-plugin-jest": "^22.4.1",
+    "gh-pages": "^2.0.1",
     "jest-resolve": "^24.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
@@ -19,6 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "pre-deploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
