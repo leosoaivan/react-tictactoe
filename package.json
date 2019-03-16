@@ -1,7 +1,7 @@
 {
   "name": "react-tictactoe",
   "version": "0.1.0",
-  "homepage": "https://leosoaivan.dev/react-tictactoe/",
+  "homepage": "https://leosoaivan.github.io/react-tictactoe/",
   "private": true,
   "dependencies": {
     "acorn": "^6.1.1",
@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "pre-deploy": "npm run build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -d build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
