@@ -84,18 +84,16 @@ class Game extends Component {
   }
 
   storePlayerMove = (index) => {
-    const { gameBoard } = this.state;
-    gameBoard[index] = this.currentPlayer().symbol;
+    const { gameBoard, moveCounter } = this.state;
 
-    this.setState({
-      gameBoard,
-    });
-  }
+    if (gameBoard[index] === '') {
+      gameBoard[index] = this.currentPlayer().symbol;
 
-  advanceTurn = () => {
-    const { moveCounter } = this.state;
-
-    this.setState({ moveCounter: moveCounter + 1 });
+      this.setState({
+        gameBoard,
+        moveCounter: moveCounter + 1,
+      });
+    }
   }
 
   restartGame = () => {
@@ -155,10 +153,6 @@ class Game extends Component {
           );
         }
       });
-    }
-
-    if (!gameIsOver) {
-      this.advanceTurn();
     }
   };
 
