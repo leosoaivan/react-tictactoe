@@ -35,7 +35,7 @@ class Game extends Component {
         symbol: 'O',
       },
       gameBoard: Array(9).fill(''),
-      moveCounter: 1,
+      moveCounter: 0,
       displayFormModal: false,
       displayGameModal: false,
       gameResult: '',
@@ -51,14 +51,14 @@ class Game extends Component {
       moveCounter, playerOne, playerTwo,
     } = this.state;
 
-    return (moveCounter % 2 === 0 ? playerTwo : playerOne);
+    return (moveCounter % 2 === 0 ? playerOne : playerTwo);
   };
 
   closeModal = () => {
     this.setState(
       {
         gameBoard: Array(9).fill(''),
-        moveCounter: 1,
+        moveCounter: 0,
         displayGameModal: false,
         gameResult: '',
       },
@@ -80,7 +80,6 @@ class Game extends Component {
 
   handleClick = (index) => {
     this.storePlayerMove(index);
-    this.checkGameOver();
   }
 
   storePlayerMove = (index) => {
@@ -92,6 +91,8 @@ class Game extends Component {
       this.setState({
         gameBoard,
         moveCounter: moveCounter + 1,
+      }, () => {
+        this.checkGameOver();
       });
     }
   }
@@ -102,7 +103,7 @@ class Game extends Component {
         playerOne: {},
         playerTwo: {},
         gameBoard: Array(9).fill(''),
-        moveCounter: 1,
+        moveCounter: 0,
       },
     );
   }
@@ -126,7 +127,7 @@ class Game extends Component {
       [2, 4, 6],
     ];
 
-    if (moveCounter >= 5) {
+    if (moveCounter >= 4) {
       winConditions.forEach((condition) => {
         const [a, b, c] = condition;
         const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
@@ -204,3 +205,4 @@ class Game extends Component {
 }
 
 export default Game;
+
