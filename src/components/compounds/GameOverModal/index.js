@@ -1,9 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Modal from '../../atoms/Modal';
 
+const WinnerSpan = styled.span`
+  font-weight: bold;
+`;
+
 const GameOverModal = ({
-  currentPlayerName,
+  winnerName,
   displayModal,
   gameResult,
   onClick,
@@ -13,7 +18,16 @@ const GameOverModal = ({
 
   if (gameResult === 'win') {
     modalHeaderMessage = 'Congratulations';
-    modalBodyMessage = `With strategy, cunning, and ruthelessness, ${currentPlayerName} has claimed absolute victory.`;
+    modalBodyMessage = (
+      <p>
+        With strategy, cunning, and ruthelessness, &nbsp;
+        <WinnerSpan>
+          {winnerName.toUpperCase()}
+        </WinnerSpan>
+        &nbsp;
+        has claimed absolute victory.
+      </p>
+    );
   } else {
     modalHeaderMessage = 'What a tired game';
     modalBodyMessage = 'Unfortunate. Sad. Demeaning to watch...a game where neither player is smart enough to outdo the other.';
@@ -31,14 +45,14 @@ const GameOverModal = ({
 };
 
 GameOverModal.propTypes = {
-  currentPlayerName: PropTypes.string,
+  winnerName: PropTypes.string,
   onClick: PropTypes.func,
   displayModal: PropTypes.bool,
   gameResult: PropTypes.string,
 };
 
 GameOverModal.defaultProps = {
-  currentPlayerName: '',
+  winnerName: null,
   displayModal: false,
   gameResult: undefined,
   onClick: undefined,

@@ -39,6 +39,7 @@ class Game extends Component {
       displayFormModal: false,
       displayGameModal: false,
       gameResult: '',
+      winner: null,
     };
   }
 
@@ -83,14 +84,13 @@ class Game extends Component {
   }
 
   storePlayerMove = (index) => {
-    const { gameBoard, moveCounter } = this.state;
+    const { gameBoard } = this.state;
 
     if (gameBoard[index] === '') {
       gameBoard[index] = this.currentPlayer().symbol;
 
       this.setState({
         gameBoard,
-        moveCounter: moveCounter + 1,
       }, () => {
         this.checkGameOver();
       });
@@ -133,11 +133,13 @@ class Game extends Component {
         const values = [gameBoard[a], gameBoard[b], gameBoard[c]];
 
         if (gameBoard[a] !== '' && values.every(value => value === gameBoard[a])) {
+          const winnerName = this.currentPlayer().name;
           gameIsOver = true;
 
           this.setState(
             {
               gameResult: 'win',
+              winner: winnerName,
               displayGameModal: true,
             },
           );
@@ -155,6 +157,10 @@ class Game extends Component {
         }
       });
     }
+
+    this.setState({
+      moveCounter: moveCounter + 1,
+    });
   };
 
   render() {
@@ -165,6 +171,7 @@ class Game extends Component {
       gameResult,
       playerOne,
       playerTwo,
+      winner,
     } = this.state;
 
     const squares = gameBoard.map((value, index) => {
@@ -193,7 +200,7 @@ class Game extends Component {
           onSetPlayerNames={this.handleSetPlayerNames}
         />
         <GameOverModal
-          currentPlayerName={this.currentPlayer().name}
+          winnerName={winner}
           displayModal={displayGameModal}
           gameResult={gameResult}
           onClick={this.closeModal}
@@ -205,4 +212,3 @@ class Game extends Component {
 }
 
 export default Game;
-
