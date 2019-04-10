@@ -6,6 +6,8 @@
   "dependencies": {
     "acorn": "^6.1.1",
     "ajv": "^6.10.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint-plugin-jest": "^22.4.1",
     "jest-resolve": "^24.5.0",
     "prop-types": "^15.7.2",
@@ -33,6 +35,12 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "babel-core": "^7.0.0-bridge.0",
@@ -41,8 +49,6 @@
     "babel-plugin-styled-components": "^1.10.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
     "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.2",
