@@ -92,7 +92,15 @@ exports[`GameOverModal Renders with a winning message 1`] = `
 <Modal
   displayButton={true}
   displayModal={true}
-  modalBody="With strategy, cunning, and ruthelessness,  has claimed absolute victory."
+  modalBody={
+    <p>
+      With strategy, cunning, and ruthelessness,  
+      <ForwardRef>
+        
+      </ForwardRef>
+        has claimed absolute victory.
+    </p>
+  }
   modalHeader="Congratulations"
   onCloseModal={null}
 />

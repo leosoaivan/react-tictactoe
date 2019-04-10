@@ -52,7 +52,7 @@ GameOverModal.propTypes = {
 };
 
 GameOverModal.defaultProps = {
-  winnerName: null,
+  winnerName: '',
   displayModal: false,
   gameResult: undefined,
   onClick: undefined,
